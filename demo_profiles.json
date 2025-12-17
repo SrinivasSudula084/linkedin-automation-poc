@@ -1,0 +1,50 @@
+[
+  {
+    "id": "p1",
+    "name": "Alice",
+    "headline": "Golang Backend Developer",
+    "url": "https://www.linkedin.com/in/alice-dev"
+  },
+  {
+    "id": "p2",
+    "name": "Bob",
+    "headline": "Senior Backend Engineer | Java | Go",
+    "url": "https://www.linkedin.com/in/bob-backend"
+  },
+  {
+    "id": "p3",
+    "name": "Charlie",
+    "headline": "Software Engineer | Golang | Microservices",
+    "url": "https://www.linkedin.com/in/charlie-golang"
+  },
+  {
+    "id": "p4",
+    "name": "Diana",
+    "headline": "Full Stack Developer | React | Node.js",
+    "url": "https://www.linkedin.com/in/diana-fullstack"
+  },
+  {
+    "id": "p5",
+    "name": "Edward",
+    "headline": "Cloud Engineer | AWS | Kubernetes",
+    "url": "https://www.linkedin.com/in/edward-cloud"
+  },
+  {
+    "id": "p6",
+    "name": "Fiona",
+    "headline": "DevOps Engineer | CI/CD | Terraform",
+    "url": "https://www.linkedin.com/in/fiona-devops"
+  },
+  {
+    "id": "p7",
+    "name": "George",
+    "headline": "Machine Learning Engineer | Python | ML",
+    "url": "https://www.linkedin.com/in/george-ml"
+  },
+  {
+    "id": "p8",
+    "name": "Harry",
+    "headline": "Site Reliability Engineer | SRE | Linux",
+    "url": "https://www.linkedin.com/in/harry-sre"
+  }
+]
