@@ -18,3 +18,6 @@ func LoadDemoProfiles(path string) ([]Profile, error) {
 
 	return profiles, nil
 }
+func LoadConnectedProfiles(path string) ([]Profile, error) {
+	return loadState(path)
+}

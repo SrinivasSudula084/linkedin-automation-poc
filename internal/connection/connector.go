@@ -12,12 +12,17 @@ func SendConnection(profile Profile, sentToday *int) error {
 		return errors.New("daily connection limit reached")
 	}
 
-	log.Println("Navigating to profile:", profile.URL)
-	log.Println("Connect button found")
-	log.Println("Sending personalized note to:", profile.Name)
+	log.Println("[CONNECT] Navigating to profile:", profile.URL)
+	log.Println("[CONNECT] Connect button found")
+	log.Println("[CONNECT] Sending note: Hi", profile.Name, ", I'd like to connect.")
 
-	*sentToday = *sentToday + 1
-	log.Println("Connection request sent. Total today:", *sentToday)
+	*sentToday++
 
+	// Save to sent_requests.json
+	sent, _ := loadState("sent_requests.json")
+	sent = append(sent, profile)
+	_ = saveState("sent_requests.json", sent)
+
+	log.Println("[CONNECT] Request sent. Total today:", *sentToday)
 	return nil
 }

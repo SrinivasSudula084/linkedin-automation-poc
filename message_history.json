@@ -2,13 +2,7 @@
   {
     "profile_url": "https://www.linkedin.com/in/alice-dev",
     "name": "Alice",
-    "message": "Hi Alice, thanks for connecting! Looking forward to staying in touch.",
-    "sent": true
-  },
-  {
-    "profile_url": "https://www.linkedin.com/in/bob-backend",
-    "name": "Bob",
-    "message": "Hi Bob, thanks for connecting! Looking forward to staying in touch.",
-    "sent": true
+    "message": "Hi Alice, thanks for accepting my connection. Let's stay in touch!",
+    "sent": false
   }
 ]
