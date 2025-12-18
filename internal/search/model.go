@@ -1,6 +1,5 @@
 package search
 
-// SearchCriteria defines how users are searched
 type SearchCriteria struct {
 	JobTitle string
 	Company  string
@@ -8,9 +7,11 @@ type SearchCriteria struct {
 	Keywords string
 }
 
-// SearchResult represents a profile found via search
 type SearchResult struct {
-	Name     string
-	Headline string
-	URL      string
+	ID       string `json:"id"`
+	Name     string `json:"name"`
+	Headline string `json:"headline"`
+	Location string `json:"location"`
+	URL      string `json:"url"`
+	Score    int    `json:"score"`
 }

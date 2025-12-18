@@ -5,8 +5,13 @@ import (
 	"os"
 )
 
+const (
+	SentFile      = "sent_requests.json"
+	ConnectedFile = "connected_profiles.json"
+)
+
 func loadState(path string) ([]Profile, error) {
-	if _, err := os.Stat(path); os.IsNotExist(err) {
+	if _, err := os.Stat(path); err != nil {
 		return []Profile{}, nil
 	}
 
@@ -16,14 +21,11 @@ func loadState(path string) ([]Profile, error) {
 	}
 
 	var profiles []Profile
-	err = json.Unmarshal(data, &profiles)
-	return profiles, err
+	_ = json.Unmarshal(data, &profiles)
+	return profiles, nil
 }
 
 func saveState(path string, profiles []Profile) error {
-	data, err := json.MarshalIndent(profiles, "", "  ")
-	if err != nil {
-		return err
-	}
+	data, _ := json.MarshalIndent(profiles, "", "  ")
 	return os.WriteFile(path, data, 0644)
 }

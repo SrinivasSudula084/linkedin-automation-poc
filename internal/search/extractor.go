@@ -1,26 +1,66 @@
 package search
 
-import "github.com/go-rod/rod"
+import (
+	"encoding/json"
+	"log"
+	"os"
+	"strings"
 
-func ExtractResults(page *rod.Page, seen map[string]bool) ([]SearchResult, error) {
-	results := []SearchResult{}
+	"github.com/go-rod/rod"
+)
 
-	links, err := page.Elements(`a[href*="/in/"]`)
+func ExtractResults(
+	page *rod.Page,
+	criteria SearchCriteria,
+	seen map[string]bool,
+) ([]SearchResult, error) {
+
+	log.Println("[SEARCH] Loading demo profiles")
+	data, err := os.ReadFile("demo_profiles.json")
 	if err != nil {
-		return results, err
+		return nil, err
 	}
 
-	for _, link := range links {
-		href, _ := link.Attribute("href")
-		if href == nil || seen[*href] {
+	all := []SearchResult{}
+	if err := json.Unmarshal(data, &all); err != nil {
+		return nil, err
+	}
+
+	results := []SearchResult{}
+
+	for _, p := range all {
+
+		// ---------- FILTERING ----------
+		if criteria.JobTitle != "" &&
+			!strings.Contains(strings.ToLower(p.Headline),
+				strings.ToLower(criteria.JobTitle)) {
 			continue
 		}
 
-		seen[*href] = true
-		results = append(results, SearchResult{
-			URL: *href,
-		})
+		if criteria.Location != "" &&
+			!strings.EqualFold(p.Location, criteria.Location) {
+			continue
+		}
+
+		if criteria.Keywords != "" &&
+			!strings.Contains(strings.ToLower(p.Headline),
+				strings.ToLower(criteria.Keywords)) {
+			continue
+		}
+
+		// ---------- DEDUPLICATION ----------
+		if seen[p.URL] {
+			log.Println("[SEARCH] Duplicate skipped:", p.URL)
+			continue
+		}
+
+		seen[p.URL] = true
+		results = append(results, p)
+
+		log.Printf("[SEARCH] Found: %s | %s | %s\n",
+			p.Name, p.Headline, p.Location)
 	}
 
+	log.Printf("[SEARCH] Total unique profiles: %d\n", len(results))
 	return results, nil
 }
