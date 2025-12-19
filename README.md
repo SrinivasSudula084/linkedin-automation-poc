@@ -1,5 +1,5 @@
 <p align="center">
-  <video src="./assests/demo.mp4" alt="Demo Video" width="500"/>
+  <video src="./assests/demo.mp4" autoplay loop muted playsinline alt="Demo Video" width="100%" />
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Language-Go-blue" />
