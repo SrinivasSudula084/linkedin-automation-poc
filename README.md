@@ -1,5 +1,5 @@
 <p align="center">
-  <video src="./assests/demo.mp4" autoplay loop muted playsinline alt="Demo Video" width="100%" />
+  <video src="./assests/demo.mp4" alt="Demo Video" width="450" />
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Language-Go-blue" />
@@ -10,8 +10,8 @@
 
 <h1 align="center">LinkedIn Automation Proof of Concept (Go + Rod)</h1>
 
-<p align="center">
-  <b>A safe, educational, demo-only LinkedIn automation system</b><br/>
+<p >
+  <b>A safe, educational, demo-only LinkedIn automation system</b>
   Built to demonstrate browser automation, stealth techniques, and clean Go architecture
 </p>
 
