@@ -71,28 +71,29 @@ Think of this project like a **robot assistant**:
 linkedin-automation-poc/
 │
 ├── cmd/
-│ ├── main.go # Entry point (controls full flow)
-│ └── cookies.go # Browser cookie persistence logic
+│   ├── main.go        # Entry point (orchestrates everything)
+│   └── cookies.go     # Cookie persistence logic
 │
 ├── internal/
-│ ├── auth/ # Login logic & failure detection
-│ ├── config/ # Environment variable handling
-│ ├── stealth/ # Anti-detection & human behavior
-│ ├── search/ # Search, filtering, ranking, pagination
-│ ├── connection/ # Connect requests & acceptance state
-│ ├── messaging/ # Follow-up messages & templates
-│ └── state/ # JSON state read/write helpers
+│   ├── auth/          # Login handling & failure detection
+│   ├── config/        # Environment variable loading
+│   ├── stealth/       # Anti-bot & human behavior simulation
+│   ├── search/        # Search & targeting logic
+│   ├── connection/    # Connection request + state handling
+│   ├── messaging/     # Messaging system + templates
+│   └── state/         # JSON-based persistence utilities
 │
-├── demo_profiles.json # Demo LinkedIn-like profiles
-├── sent_requests.json # Profiles that received connection requests
-├── connected_profiles.json # Profiles that accepted connections
-├── message_state.json # Tracks who already received messages
-├── message_history.json # Full message history
-├── cookies.json # Stored browser session cookies
+├── demo_profiles.json        # Demo LinkedIn profiles
+├── sent_requests.json        # Profiles to whom requests were sent
+├── connected_profiles.json  # Accepted connections
+├── message_state.json        # Tracks who already received messages
+├── message_history.json     # Full message log
+├── cookies.json              # Stored session cookies
 │
-├── .env # Environment variables (ignored in git)
-├── go.mod / go.sum # Go dependencies
-└── README.md # Documentation 
+├── .env               # Environment variables (ignored in git)
+├── go.mod / go.sum    # Go dependencies
+└── README.md
+
 
 ```
 
