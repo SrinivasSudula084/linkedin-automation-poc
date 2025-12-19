@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/demo.gif" alt="Demo Video" width="800"/>
+  <img src="assets/demo.gif" alt="Demo Video" width="250"/>
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Language-Go-blue" />
@@ -8,71 +8,90 @@
   <img src="https://img.shields.io/badge/License-MIT-green" />
 </p>
 
-# LinkedIn Automation Proof-of-Concept (Go + Rod)
+<h1 align="center">LinkedIn Automation Proof of Concept (Go + Rod)</h1>
 
-> ⚠️ **Educational Proof-of-Concept Only**
->
-> This project is built strictly for **technical evaluation and learning purposes**.
-> It **does NOT bypass LinkedIn security**, **does NOT automate real accounts**, and **must not be used in production**.
+<p align="center">
+  <b>A safe, educational, demo-only LinkedIn automation system</b><br/>
+  Built to demonstrate browser automation, stealth techniques, and clean Go architecture
+</p>
 
----
-
-## 📖 Overview
-
-This project is a **Go-based LinkedIn automation proof-of-concept** designed to demonstrate:
-
-- Advanced **browser automation** using **Rod**
-- **Human-like behavior simulation** to reduce bot detection
-- **Clean, modular Go architecture**
-- **State-based automation flow** (search → connect → accept → message)
-- Safe handling of **platform restrictions (captcha, 2FA)**
-
-The focus of this project is **engineering quality**, **system design**, and **automation logic** — **not bypassing LinkedIn safeguards**.
+<p align="center">
+  <i>⚠️ Educational Purpose Only · No real LinkedIn automation performed</i>
+</p>
 
 ---
 
-## 🎯 What This Project Demonstrates
+## 📌 Project Overview
 
-✔ Authentication flow using environment variables  
-✔ Login failure & security checkpoint detection  
-✔ Search & targeting logic with filtering and ranking  
-✔ Duplicate profile detection  
-✔ Pagination-ready architecture  
-✔ Connection request workflow with limits  
-✔ Accepted connection tracking using persistent JSON state  
-✔ Automated follow-up messaging (demo mode)  
-✔ Cookie persistence support (POC)  
-✔ Clean logs showing every automation step  
+This project is a **LinkedIn Automation Proof of Concept** built using **Go** and the **Rod browser automation library**.
+
+The goal of this project is **NOT** to break LinkedIn rules.  
+Instead, it demonstrates **how such systems are architected safely**, including:
+
+- Human-like automation behavior
+- Anti-detection techniques
+- Clean modular Go design
+- State persistence using JSON
+- Graceful handling of login failures and security checkpoints
+
+> 🔒 **Important**  
+> LinkedIn automation violates LinkedIn’s Terms of Service.  
+> This project runs in **DEMO MODE only** and never attempts to bypass captchas, 2FA, or security checks.
 
 ---
 
-## 🗂️ Project Structure
+## 🎯 Why This Project Exists
+
+Recruiters often want to evaluate:
+- How fast you can learn a new language (Go)
+- How you design automation systems
+- How you handle real-world constraints (ToS, captchas, rate limits)
+- How cleanly you structure large codebases
+
+This project focuses on **engineering quality**, not misuse.
+
+---
+
+## 🧠 High-Level Flow (Simple Explanation)
+
+Think of this project like a **robot assistant**:
+
+1. 🔐 Tries to log in (demo only)
+2. 🔍 Searches for people based on criteria
+3. ➕ Sends connection requests (limited per day)
+4. ⏳ Waits for acceptance (simulated)
+5. 💬 Sends follow-up messages only to accepted connections
+6. 💾 Saves everything in JSON files so it remembers next time
+
+---
+
+## 🗂️ Project Structure (Explained Line by Line)
 
 linkedin-automation-poc/
 │
 ├── cmd/
-│   ├── main.go        # Entry point (orchestrates everything)
-│   └── cookies.go     # Cookie persistence logic
+│ ├── main.go # Entry point (controls full flow)
+│ └── cookies.go # Browser cookie persistence logic
 │
 ├── internal/
-│   ├── auth/          # Login handling & failure detection
-│   ├── config/        # Environment variable loading
-│   ├── stealth/       # Anti-bot & human behavior simulation
-│   ├── search/        # Search & targeting logic
-│   ├── connection/    # Connection request + state handling
-│   ├── messaging/     # Messaging system + templates
-│   └── state/         # JSON-based persistence utilities
+│ ├── auth/ # Login logic & failure detection
+│ ├── config/ # Environment variable handling
+│ ├── stealth/ # Anti-detection & human behavior
+│ ├── search/ # Search, filtering, ranking, pagination
+│ ├── connection/ # Connect requests & acceptance state
+│ ├── messaging/ # Follow-up messages & templates
+│ └── state/ # JSON state read/write helpers
 │
-├── demo_profiles.json        # Demo LinkedIn profiles
-├── sent_requests.json        # Profiles to whom requests were sent
-├── connected_profiles.json  # Accepted connections
-├── message_state.json        # Tracks who already received messages
-├── message_history.json     # Full message log
-├── cookies.json              # Stored session cookies
+├── demo_profiles.json # Demo LinkedIn-like profiles
+├── sent_requests.json # Profiles that received connection requests
+├── connected_profiles.json # Profiles that accepted connections
+├── message_state.json # Tracks who already received messages
+├── message_history.json # Full message history
+├── cookies.json # Stored browser session cookies
 │
-├── .env               # Environment variables (ignored in git)
-├── go.mod / go.sum    # Go dependencies
-└── README.md
+├── .env # Environment variables (ignored in git)
+├── go.mod / go.sum # Go dependencies
+└── README.md # Documentation 
 
 
 ---
@@ -88,6 +107,7 @@ linkedin-automation-poc/
   - Captcha pages
   - Verification / 2FA checkpoints
 - Exits safely without retries or bypass attempts
+- Saves cookies for reuse
 
 ### Why this matters
 
@@ -115,43 +135,45 @@ Search criteria includes:
 - Profiles with higher scores rank first
 - Duplicate profiles are automatically skipped using a `seen` map
 
-### Example log output
+### Example log
 
-```text
 [SEARCH] Running search with criteria: {golang india backend}
-[SEARCH] Match: Alice | Golang Backend Developer | India | score=6
-[SEARCH] Match: Bob | Backend Engineer | India | score=3
+[SEARCH] Match: Alice | Golang Backend Developer | score=6
+[SEARCH] Match: Bob | Backend Engineer | score=3
 [SEARCH] 2 matching profiles found
 
-
-🔁 Pagination (POC-Ready)
+### 🔁 Pagination (POC-Ready)
 
 Pagination logic is structured so that:
 
-Results can be processed page-by-page
-Duplicate profiles across pages are ignored
-Easy to plug into real pagination later
-This satisfies the pagination requirement without unsafe live automation.
+- Results can be processed page-by-page
+- Duplicate profiles across pages are ignored
+- Easy to plug into real pagination later
+- This satisfies the pagination requirement without unsafe live automation.
 
-🤝 Connection Requests System
 
-What happens
 
-Navigates to each matched profile
-Detects the Connect button (selector-based)
-Sends a personalized note
-Enforces a daily connection limit
+---
 
-Stores sent requests in sent_requests.json
+## ➕ Connection Requests System
 
-Example logs
+### Features
+- Navigates to profile URLs
+- Detects "Connect" button (demo)
+- Sends personalized notes
+- Enforces daily limits
+- Avoids duplicate requests
 
+### State Files Used
+- `sent_requests.json`
+
+### Example log
 [CONNECT] Navigating to profile: https://www.linkedin.com/in/alice-dev
-[CONNECT] Connect button found
 [CONNECT] Sending note: Hi Alice, I'd like to connect.
 [CONNECT] Request sent. Total today: 1
+[CONNECT] Connect button found
 
-📂 State Management (IMPORTANT)
+## 📂 State Management (IMPORTANT)
 
 This project uses JSON-based state persistence.
 
@@ -167,78 +189,119 @@ State Files Explained
 
 This allows:
 
-Safe resume after crashes
-No duplicate requests
-No duplicate messages
+- Safe resume after crashes
+- No duplicate requests
+- No duplicate messages
 
-✅ Accepted Connections Simulation
 
-Since real LinkedIn acceptance cannot be automated safely:
+---
 
-Accepted connections are simulated
-Profiles move from sent_requests.json → connected_profiles.json
-This mimics real asynchronous acceptance behavior
+## ✅ Accepted Connections (State Management)
 
-Example log:
+Because real acceptance cannot be automated safely:
+
+- Acceptance is **simulated**
+- New accepted profiles are moved from:
+  - `sent_requests.json` ➜ `connected_profiles.json`
+
+### Example log
 
 [STATE] Profile accepted: Alice
 [STATE] Profile accepted: Bob
 
-💬 Messaging System
 
-Messages are sent only to accepted connections.
+---
 
-Features
+## 💬 Messaging System
 
-Template-based messages
-Dynamic variables (e.g. {{name}})
-Message deduplication using message_state.json
-Persistent message history
+### Messaging rules
+- Messages sent **only after acceptance**
+- Uses templates with variables
+- Avoids duplicate messages
+- Tracks history & state
 
-Example
-[MESSAGE] Sending message: Hi Alice, thanks for accepting my connection. Let's stay in touch!
-[MESSAGE] Message sent successfully
+### State Files Used
+- `connected_profiles.json`
+- `message_state.json`
+- `message_history.json`
 
-🕵️ Stealth & Anti-Detection Techniques
+### Example log
 
-This project implements human-like behavior simulation, including:
+[MESSAGE] Opening chat with: Alice
+[MESSAGE] Sending message: Hi Alice, thanks for accepting my connection!
+[MESSAGE] Sent follow-up to: Alice
 
-Randomized typing speed
-Random delays
-Mouse movement simulation
-Scrolling behavior
-Browser fingerprint masking
-Rate limiting & cooldowns
-These are implemented for demonstration, not bypassing security.
 
-🧗 Challenges Faced & Solutions
+---
 
-1️⃣ LinkedIn Security Blocks
-✔ Solution: Demo mode + graceful handling
+## 🕵️ Stealth & Anti-Detection Techniques
 
-2️⃣ Duplicate Profiles
-✔ Solution: URL-based deduplication
+Implemented techniques include:
 
-3️⃣ Messaging Without Acceptance
-✔ Solution: State-based acceptance simulation
+- Fingerprint masking
+- Human-like delays
+- Random scrolling
+- Typing simulation
+- Rate limiting
+- Activity scheduling
+- Session reuse via cookies
 
-4️⃣ Session Reuse
-✔ Solution: Cookie persistence
+These are **demonstrated**, not weaponized.
 
-5️⃣ Anti-Bot Detection
-✔ Solution: Human-like behavior simulation
+---
 
-🧠 Why This Design Is Professional
+## 📁 JSON State Files (Why They Matter)
+
+| File | Purpose |
+|-----|--------|
+| `demo_profiles.json` | Demo search dataset |
+| `sent_requests.json` | Who received requests |
+| `connected_profiles.json` | Who accepted |
+| `message_state.json` | Prevent duplicate messages |
+| `message_history.json` | Full message logs |
+| `cookies.json` | Browser session reuse |
+
+This allows the program to **resume safely** after restarts.
+
+---
+
+## 🚧 Challenges Faced & How They Were Solved
+
+### ❌ LinkedIn blocks automation
+✅ Solved using demo mode + checkpoint detection
+
+### ❌ Duplicate profiles & messages
+✅ Solved with URL-based state tracking
+
+### ❌ Unsafe real automation
+✅ Solved with controlled simulation
+
+### ❌ Large codebase complexity
+✅ Solved with clean modular architecture
+
+### ❌ Messaging Without Acceptance
+✅ Solution: State-based acceptance simulation
+
+### ❌Session Reuse
+✅ Solution: Cookie persistence
+
+### ❌Anti-Bot Detection
+✅ Solution: Human-like behavior simulation
+
+---
+
+## 🧠 Why This Design Is Professional
 Problems I Solved:
 
-LinkedIn blocks automation → used demo mode
-Avoid duplicate actions → state tracking
-Restart safety → JSON persistence
-Separation of concerns → modular packages
-Ethical automation → no ToS violation
+- LinkedIn blocks automation → used demo mode
+- Avoid duplicate actions → state tracking
+- Restart safety → JSON persistence
+- Separation of concerns → modular packages
+- Ethical automation → no ToS violation
 
+---
 
-📊 Requirements Coverage Matrix
+## 📊 Requirements Coverage Matrix
 
 | Requirement             | Status |
 | ----------------------- | ------ |
@@ -254,51 +317,58 @@ Ethical automation → no ToS violation
 | Accepted-only messaging | ✅      |
 | Message tracking        | ✅      |
 
+---
 
-🧪 How to Run
+## 🧪 How to Run
 
-1️⃣ Set environment variables
+### 1️⃣ Set environment variables
 
 LINKEDIN_EMAIL=your_email@example.com
 LINKEDIN_PASSWORD=your_password
 
-2️⃣ Run the project
+## 2️⃣ Run the project
 
 go run ./cmd
 
+---
 
-📽 Demo Video (Recommended)
+## 📽 Demo Video (Recommended)
 
 Record a short demo showing:
 
-Project structure
-Running the app
-Logs for search, connect, accept, message
-Explanation of demo mode
+- Project structure
+- Running the app
+- Logs for search, connect, accept, message
+- Explanation of demo mode
 
 Add the video link here later.
 
-⚠️ Important Disclaimer
+---
 
-This project does not automate real LinkedIn usage
-It respects platform limitations
-It focuses on architecture, logic, and design
-Built purely for educational and interview evaluation
+## ⚠️ Important Disclaimer
 
-🏁 Final Notes
+- This project does not automate real LinkedIn usage
+- It respects platform limitations
+- It focuses on architecture, logic, and design
+- Built purely for educational and interview evaluation
+
+
+## 🏁 Final Notes
 
 This project demonstrates:
 
-System thinking
-Safe automation design
-Real-world constraints handling
-Clean Go architecture
+- System thinking
+- Safe automation design
+- Real-world constraints handling
+- Clean Go architecture
 
 It intentionally avoids unsafe practices while still showcasing advanced automation engineering skills.
 
+---
 
-🙌 Author
+## 🙌 Author
 
-Venkata Subramanya Srinivas Sudula
+**Venkata Subramanya Srinivas Sudula**
 Aspiring Software Engineer,
 Learning fast, building responsibly.
+email: sudulasrinivas084@gmail.com
