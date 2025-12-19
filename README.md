@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assests/demo.gif" alt="Demo Video" width="250"/>
+  <img src="./assests/demo.mp4" alt="Demo Video" width="500"/>
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Language-Go-blue" />
