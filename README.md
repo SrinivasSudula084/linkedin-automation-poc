@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/demo.gif" alt="Demo Video" width="250"/>
+  <img src="./assests/demo.gif" alt="Demo Video" width="250"/>
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Language-Go-blue" />
@@ -66,6 +66,7 @@ Think of this project like a **robot assistant**:
 ---
 
 ## 🗂️ Project Structure (Explained Line by Line)
+```text
 
 linkedin-automation-poc/
 │
@@ -93,6 +94,7 @@ linkedin-automation-poc/
 ├── go.mod / go.sum # Go dependencies
 └── README.md # Documentation 
 
+```
 
 ---
 
@@ -137,10 +139,12 @@ Search criteria includes:
 
 ### Example log
 
+```text
 [SEARCH] Running search with criteria: {golang india backend}
 [SEARCH] Match: Alice | Golang Backend Developer | score=6
 [SEARCH] Match: Bob | Backend Engineer | score=3
 [SEARCH] 2 matching profiles found
+```
 
 ### 🔁 Pagination (POC-Ready)
 
@@ -168,10 +172,13 @@ Pagination logic is structured so that:
 - `sent_requests.json`
 
 ### Example log
+```text
 [CONNECT] Navigating to profile: https://www.linkedin.com/in/alice-dev
 [CONNECT] Sending note: Hi Alice, I'd like to connect.
 [CONNECT] Request sent. Total today: 1
 [CONNECT] Connect button found
+```
+---
 
 ## 📂 State Management (IMPORTANT)
 
@@ -205,10 +212,10 @@ Because real acceptance cannot be automated safely:
   - `sent_requests.json` ➜ `connected_profiles.json`
 
 ### Example log
-
+```text
 [STATE] Profile accepted: Alice
 [STATE] Profile accepted: Bob
-
+```
 
 ---
 
@@ -236,7 +243,7 @@ Because real acceptance cannot be automated safely:
 
 ## 🕵️ Stealth & Anti-Detection Techniques
 
-Implemented techniques include:
+#### Implemented techniques include:
 
 - Fingerprint masking
 - Human-like delays
@@ -291,7 +298,7 @@ This allows the program to **resume safely** after restarts.
 ---
 
 ## 🧠 Why This Design Is Professional
-Problems I Solved:
+#### Problems I Solved:
 
 - LinkedIn blocks automation → used demo mode
 - Avoid duplicate actions → state tracking
@@ -322,19 +329,22 @@ Problems I Solved:
 ## 🧪 How to Run
 
 ### 1️⃣ Set environment variables
-
+```text
 LINKEDIN_EMAIL=your_email@example.com
 LINKEDIN_PASSWORD=your_password
+```
 
 ## 2️⃣ Run the project
 
+```bash
 go run ./cmd
+```
 
 ---
 
 ## 📽 Demo Video (Recommended)
 
-Record a short demo showing:
+#### Record a short demo showing:
 
 - Project structure
 - Running the app
@@ -355,7 +365,7 @@ Add the video link here later.
 
 ## 🏁 Final Notes
 
-This project demonstrates:
+#### This project demonstrates:
 
 - System thinking
 - Safe automation design
@@ -368,7 +378,7 @@ It intentionally avoids unsafe practices while still showcasing advanced automat
 
 ## 🙌 Author
 
-**Venkata Subramanya Srinivas Sudula**
-Aspiring Software Engineer,
-Learning fast, building responsibly.
-email: sudulasrinivas084@gmail.com
+#### Venkata Subramanya Srinivas Sudula
+##### Aspiring Software Engineer
+##### Learning fast, building responsibly
+##### email: sudulasrinivas084@gmail.com
