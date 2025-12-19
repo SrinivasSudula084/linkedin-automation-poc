@@ -10,7 +10,7 @@
   Built to demonstrate browser automation, stealth techniques, and clean Go architecture
 </p>
 
-<p align="center">
+<p >
   <i>⚠️ Educational Purpose Only · No real LinkedIn automation performed</i>
 </p>
 <p align="center">
@@ -19,6 +19,7 @@
   <img src="https://img.shields.io/badge/Mode-Demo%20Only-yellow" />
   <img src="https://img.shields.io/badge/License-MIT-green" />
 </p>
+
 ---
 
 ## 📌 Project Overview
