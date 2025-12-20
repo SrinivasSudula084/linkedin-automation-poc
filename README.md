@@ -2,6 +2,12 @@
   <img src="assests/demo1.gif" width="550" />
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Language-Go-blue" />
+  <img src="https://img.shields.io/badge/Automation-Rod-orange" />
+  <img src="https://img.shields.io/badge/Mode-Demo%20Only-yellow" />
+  <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
 
 <h1 align="center">LinkedIn Automation Proof of Concept (Go + Rod)</h1>
 
@@ -12,12 +18,6 @@
 
 <p >
   <i>⚠️ Educational Purpose Only · No real LinkedIn automation performed</i>
-</p>
-<p align="center">
-  <img src="https://img.shields.io/badge/Language-Go-blue" />
-  <img src="https://img.shields.io/badge/Automation-Rod-orange" />
-  <img src="https://img.shields.io/badge/Mode-Demo%20Only-yellow" />
-  <img src="https://img.shields.io/badge/License-MIT-green" />
 </p>
 
 ---
@@ -39,6 +39,21 @@ Instead, it demonstrates **how such systems are architected safely**, including:
 > LinkedIn automation violates LinkedIn’s Terms of Service.  
 > This project runs in **DEMO MODE only** and never attempts to bypass captchas, 2FA, or security checks.
 
+---
+
+## 🧠 Why Demo Mode?
+
+LinkedIn aggressively enforces:
+- Captcha challenges
+- 2FA / verification codes
+- Session invalidation
+
+Attempting to bypass these is:
+- ❌ unethical
+- ❌ unsafe
+- ❌ against assignment intent
+
+Instead, this project demonstrates **how a real system would behave**, without violating ToS.
 ---
 
 ## 🎯 Why This Project Exists
@@ -97,6 +112,38 @@ linkedin-automation-poc/
 
 
 ```
+---
+
+## 🔄 End-to-End Flow (Step-by-Step)
+
+### 1️⃣ Startup
+- Launch browser (Rod)
+- Apply fingerprint masking
+- Load environment variables
+
+### 2️⃣ Authentication (Demo)
+- Attempt login
+- Detect security checkpoints
+- Continue in demo mode if blocked
+- Load existing cookies if available
+
+### 3️⃣ Search & Targeting
+- Load profiles from `demo_profiles.json`
+- Apply search criteria
+- Score and rank matches
+- Remove duplicates
+- Simulate pagination
+
+### 4️⃣ Connection Requests
+- Navigate to each profile
+- Detect “Connect” button
+- Send personalized note
+- Enforce daily limit
+- Save sent requests
+
+### 5️⃣ Acceptance Simulation
+- Move profiles from `sent_requests.json`
+- → `connected_profiles.json`
 
 ---
 
@@ -326,21 +373,56 @@ This allows the program to **resume safely** after restarts.
 | Accepted-only messaging | ✅      |
 | Message tracking        | ✅      |
 
+
 ---
 
-## 🧪 How to Run
+## ⚙️ Setup Instructions
 
-### 1️⃣ Set environment variables
+### 1️⃣ Install Go from internet
+
+#### verify the installation by:
+```bash
+go version
+```
+Requires Go 1.20+
+
+### 2️⃣ Clone Repository
+
+```bash
+git clone https://github.com/your-username/linkedin-automation-poc.git
+cd linkedin-automation-poc
+```
+
+### 3️⃣ Environment Variables
+
+Create .env file:
 ```text
 LINKEDIN_EMAIL=your_email@example.com
 LINKEDIN_PASSWORD=your_password
 ```
 
-## 2️⃣ Run the project
+⚠️ Credentials are never committed
 
+### 4️⃣ Install Dependencies
+```bash
+go mod tidy
+```
+
+### 5️⃣ Run Project
 ```bash
 go run ./cmd
 ```
+
+### 🧪 Example Logs 
+```text
+
+[SEARCH] Running search with criteria: {golang india backend}
+[SEARCH] Match: Alice | Golang Backend Developer | score=6
+[CONNECT] Request sent. Total today: 1
+[STATE] Profile accepted: Alice
+[MESSAGE] Sent follow-up to: Alice
+```
+
 
 ---
 
@@ -353,7 +435,7 @@ go run ./cmd
 - Logs for search, connect, accept, message
 - Explanation of demo mode
 
-Add the video link here later.
+**Demo video link :** https://youtu.be/ijrCuFsqxOU
 
 ---
 

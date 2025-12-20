@@ -7,10 +7,14 @@ import (
 	"github.com/go-rod/rod"
 )
 
-// HoverElement simulates hovering over an element using DOM bounding box
+// HoverElement simulates a realistic mouse hover over a DOM element
+// It calculates a random point inside the element’s bounding box
 func HoverElement(el *rod.Element) {
 
-	// Get element bounding box via JS
+	// -------------------------------------------------
+	// FETCH ELEMENT POSITION
+	// -------------------------------------------------
+	// Get element bounding box using JavaScript
 	box := el.MustEval(`() => {
 		const r = this.getBoundingClientRect();
 		return {
@@ -21,9 +25,14 @@ func HoverElement(el *rod.Element) {
 		};
 	}`).Map()
 
+	// Choose a random point inside the element
 	x := box["x"].Num() + rand.Float64()*box["width"].Num()
 	y := box["y"].Num() + rand.Float64()*box["height"].Num()
 
+	// -------------------------------------------------
+	// SIMULATE MOUSE MOVE EVENT
+	// -------------------------------------------------
+	// Dispatch a mousemove event to imitate real user behavior
 	el.Page().MustEval(`(x, y) => {
 		document.dispatchEvent(
 			new MouseEvent('mousemove', {
@@ -34,17 +43,24 @@ func HoverElement(el *rod.Element) {
 		);
 	}`, x, y)
 
+	// Add a small human-like pause after hover
 	HumanDelay(300, 800)
 }
 
-// IdleMouseWander simulates small idle cursor movements
+// IdleMouseWander simulates small, random cursor movements
+// Used when the user is idle to appear more human-like
 func IdleMouseWander(page *rod.Page) {
-	wanders := rand.Intn(3) + 2 // 2–4 movements
+
+	// Randomize number of idle movements (2–4)
+	wanders := rand.Intn(3) + 2
 
 	for i := 0; i < wanders; i++ {
+
+		// Generate random screen coordinates
 		x := rand.Float64()*800 + 100
 		y := rand.Float64()*500 + 100
 
+		// Dispatch mouse movement event
 		page.MustEval(`(x, y) => {
 			document.dispatchEvent(
 				new MouseEvent('mousemove', {
@@ -55,6 +71,7 @@ func IdleMouseWander(page *rod.Page) {
 			);
 		}`, x, y)
 
+		// Pause between movements to mimic natural idle behavior
 		time.Sleep(time.Duration(rand.Intn(800)+400) * time.Millisecond)
 	}
 }
