@@ -426,7 +426,7 @@ go run ./cmd
 
 ---
 
-## 📽 Demo Video (Recommended)
+## 📽 Demo Video 
 
 #### Record a short demo showing:
 
