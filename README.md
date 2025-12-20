@@ -1,5 +1,5 @@
 <p align="center">
-  <video src="assests/demo1.mp4" autoplay loop muted playsinline width="100%"></video>
+  <img src="assests/demo1.gif" width="450" />
 </p>
 
 
